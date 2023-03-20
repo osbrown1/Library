@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+@using LibraryApp.Models;
+
+<h1>Welcome to Carl's Library!</h1>
+
+<hr>
+
+<h4>Librarians</h4>
+@if (Model["librarians"].Length == 0)
+{
+  <p>No librarians have been added yet!</p>
+} 
+<ul>
+  @foreach (Librarian cat in Model["librarians"])
+  {
+    <li>@Html.ActionLink(@cat.Name, "Details", "Libraries", new { id = @cat.LibraryId})</li>
+  }
+</ul>
+
+<h4>Patrons</h4>
+@if (Model["patrons"].Length == 0)
+{
+  <p>No patrons have been added yet!</p>
+} 
+<ul>
+  @foreach (Patron patron in Model["patrons"])
+  {
+    <li>@Html.ActionLink(@patron.Description, "Details", "Patrons", new { id = @patron.PatronId})</li>
+  }
+</ul>
+
+<hr>
+
+<p>@Html.ActionLink("Manage patrons", "Index", "Patrons")</p> 
+<p>@Html.ActionLink("Manage librarians", "Index", "Librarians")</p>
