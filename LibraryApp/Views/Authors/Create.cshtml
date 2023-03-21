@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model LibraryApp.Models.Author
+
+@using (Html.BeginForm())
+
+{
+  <p>Author Name!</p>
+  @Html.EditorFor(model=> model.Name)
+  <button>Submit!</button>
+}

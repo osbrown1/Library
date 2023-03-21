@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout2";
+}
+
+@model LibraryApp.Models.Book
+@using LibraryApp.Models
+
+<h1>Record a new book!</h1>
+
+
+<form method = "post">
+  <label for="title">Book Title</label>
+  <input type = "text" id="title" name="title">
+  <br>
+  <table>
+  @foreach (Author item in ViewBag.Authors)
+  {
+    <tr>
+      <td>@item.Name</td>
+      <td><input name="wutAuthors" type="checkbox" value="@item.AuthorId"></td>
+    </tr>
+  }
+  </table>
+  <input type="submit" value="Save this Book!">
+</form>

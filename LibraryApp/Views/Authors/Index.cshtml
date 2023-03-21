@@ -1,0 +1,11 @@
+@{ 
+  Layout = "_Layout";
+}
+@using LibraryApp.Models;
+
+<ul>
+@foreach (Author fish in Model)
+{
+ <li>@fish.Name</li> 
+}
+</ul>

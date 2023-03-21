@@ -7,7 +7,7 @@ namespace LibraryApp.Models
   {
     public int PatronId {get; set; }
 
-    
+    public string Name { get; set; }
 
     public List<PatronCopy> JoinEntities { get; }
 

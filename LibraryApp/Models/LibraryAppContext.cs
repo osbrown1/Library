@@ -8,10 +8,10 @@ namespace LibraryApp.Models
     public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
     public DbSet<AuthorBook> AuthorBooks { get; set; }
-    public DbSet<Copy> Copys { get; set; }
+    public DbSet<Copy> Copies { get; set; }
     public DbSet<Patron> Patrons { get; set; }
-    public DbSet<PatronCopy> PatronCopys { get; set; }
+    public DbSet<PatronCopy> PatronCopies { get; set; }
 
-    public LibraryAppContext(DbContextOptions options) : base(optoins) { }
+    public LibraryAppContext(DbContextOptions options) : base(options) { }
   }
 }

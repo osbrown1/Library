@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using LibratyApp.Models;
 using System.Threading.Tasks;
+using LibraryApp.Models;
 using LibraryApp.ViewModels;
 
 namespace LibraryApp.Controllers
@@ -12,7 +12,7 @@ namespace LibraryApp.Controllers
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ToDoListContext db)
+    public AccountController (UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, LibraryAppContext db)
     {
       _userManager = userManager;
       _signInManager = signInManager;

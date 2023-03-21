@@ -1,0 +1,15 @@
+@* @{
+  Layout = "_Layout";
+}
+@using LibraryApp.Models;
+
+<h1>Copies:</h1>
+@if (@Model.Count == 0)
+{
+  <h3>We are out of copies</h3>
+}
+else
+@foreach (Copy copy in Model)
+{
+  @Html.ActionLink($"{copy.Title}", "Details", new { id = copy.CopyId })
+} *@

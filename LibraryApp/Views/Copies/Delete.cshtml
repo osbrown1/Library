@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model LibraryApp.Models.Copy
+
+<h3>Delete this copy?</h3>
+
+@Html.DisplayNameFor(model => model.Book.Title): @Html.DisplayFor(model => model.Book.Title)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
