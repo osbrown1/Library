@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace LibraryApp.Controllers
 {
-  // [Authorize]
+  [Authorize]
   public class BooksController : Controller
   {
     private readonly LibraryAppContext _db;
@@ -48,6 +48,7 @@ namespace LibraryApp.Controllers
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
     {
       List<Book> model = _db.Books
@@ -57,6 +58,7 @@ namespace LibraryApp.Controllers
       return View(model);
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Book thisBook = _db.Books

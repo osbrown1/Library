@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace LibraryApp.Controllers
 {
-  // [Authorize]
+  [Authorize]
   public class AuthorsController : Controller
   {
     private readonly LibraryAppContext _db;
@@ -33,6 +33,17 @@ namespace LibraryApp.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Details(int id)
+    {
+      Author thisThis = _db.Authors         
+          .Include(author => author.JoinEntities)
+          .ThenInclude(author => author.Book)
+          .Include(author => author.Name)
+          .FirstOrDefault(author => author.AuthorId == id);
+      return View(thisAuthor);
+    }
+    
+    [AllowAnonymous]
     public ActionResult Index()
     {
       return View(_db.Authors.ToList());

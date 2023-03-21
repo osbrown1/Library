@@ -9,5 +9,6 @@ namespace LibraryApp.Models
     public int AuthorId { get; set; }
     public string Name { get; set; }
     public List<AuthorBook> JoinEntities { get; }
+    public ApplicationUser User { get; set; }
   }
 }

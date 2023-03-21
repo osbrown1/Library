@@ -12,3 +12,16 @@ a librarian would enter user and password and have full access to library
 
 a regular user would only have access to a portion of what the librarian has access to.
 
+/////
+
+ToDo: 
+
+-Fill out Authors Controller and Author View, as well for Patrons Controller and Patron views. 
+-Determine how we want login functionality, eg login for patrons & librarians respectfully? 
+-Patron should be restricted from full content of webpage.
+
+
+
+
+
+
