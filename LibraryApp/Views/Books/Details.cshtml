@@ -10,11 +10,10 @@
 <br>
 <h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
 <br>
-@Html.DisplayNameFor(model => model.JoinEntities)
 
 @if(@Model.Copies.Count == 0)
 {
-  <p>We don't have any books, ass hat</p>
+  <p>We don't have any copies of this book, ass hat</p>
 }
 else
 {
@@ -31,10 +30,14 @@ else
   <h3>Author</h3>
   @foreach(AuthorBook join in Model.JoinEntities)
   {
-    <p>@join.Author.Name</p>
+    <p>Author: @join.Author.Name</p>
+    {
+      @Html.Hidden("joinId", @join.AuthorBookId)
+      <input type="submit" value="Delete"/>
+    }
+    
   }
 }
-
+@Html.ActionLink("Edit Authors For This Book", "ManageAuthor", new { id = Model.BookId })
 <p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId })</p>
 <p>@Html.ActionLink("Delete Book", "Delete", new { id = Model.BookId })</p>
-<p>@Html.ActionLink("Add an Author", "AddAuthor", new { id = Model.BookId })</p>

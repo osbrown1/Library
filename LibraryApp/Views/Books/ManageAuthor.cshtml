@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@using LibraryApp.Models;
+
+
+<h1>Manage Authors for @Model.Title</h1>
+<form method = "post">
+  <table class="table">
+    <tr>
+      <th>Author Name</th>
+      <th>Select</th>
+    </tr>
+    @foreach (Author item in @ViewBag.ExistingAuthors)
+    {
+      <tr>
+        <td>@item.Name</td>
+        <td><input name="authorList" type="checkbox" value="@item.AuthorId" checked="checked"></td>
+      </tr>
+    }
+    @foreach (Author item in @ViewBag.NonAssociatedAuthors)
+    {
+      <tr>
+        <td>@item.Name</td>
+        <td><input name="authorList" type="checkbox" value="@item.AuthorId"></td>
+      </tr>
+    }
+  </table>
+<input type="hidden" name="bookId" value="@Model.BookId">
+<input type="submit" value="save changes">
+</form>

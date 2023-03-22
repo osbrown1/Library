@@ -12,6 +12,8 @@ else
 @foreach (Book book in Model)
 {
   @Html.ActionLink($"{book.Title}", "Details", new { id = book.BookId })
+  <br>
 }
 <br>
 <br>
+<p>@Html.ActionLink("Back to list", "Home", "Index")</p>

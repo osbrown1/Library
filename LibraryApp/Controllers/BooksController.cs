@@ -40,8 +40,14 @@ namespace LibraryApp.Controllers
       {
         foreach(int author in wutAuthors)
         {
-          _db.AuthorBooks.Add(new AuthorBook() {BookId = newBook.BookId, AuthorId = author });
-          _db.SaveChanges();
+          #nullable enable
+          AuthorBook? fish = _db.AuthorBooks.FirstOrDefault(thingy => (thingy.AuthorId== author && thingy.BookId == newBook.BookId));
+          #nullable disable
+          if(fish != null)
+          {
+            _db.AuthorBooks.Add(new AuthorBook() {BookId = newBook.BookId, AuthorId = author });
+            _db.SaveChanges();
+          }
         }
       }
 
@@ -69,6 +75,21 @@ namespace LibraryApp.Controllers
       return View(thisBook);
     }
 
+    public ActionResult Edit(int id)
+    {
+      Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
+      // ViewBag.AuthorId = new SelectList(_db.Authors, "AuthorId", "Name");
+      return View(thisBook);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Book book)
+    {
+      _db.Books.Update(book);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
     public ActionResult Delete(int id)
     {
       Book thisBook = _db.Books.FirstOrDefault(book => book.BookId == id);
@@ -82,6 +103,46 @@ namespace LibraryApp.Controllers
       _db.Books.Remove(thisBook);
       _db.SaveChanges();
       return RedirectToAction("Index");
+    }
+
+    public ActionResult ManageAuthor(int id)
+    {
+      
+      Book targetBook = _db.Books
+        .Include(thing => thing.JoinEntities)
+        .ThenInclude(thing => thing.Author)
+        .FirstOrDefault(book => book.BookId == id);
+
+      ViewBag.ExistingAuthors = targetBook.JoinEntities
+        .Where(entry => entry.BookId == targetBook.BookId)
+        .Select(entry => entry.Author)
+        .Distinct()
+        .ToList();
+  
+      ViewBag.NonAssociatedAuthors = _db.Authors
+        .Include(item => item.JoinEntities)
+        .ThenInclude(item => item.Book)
+        .Where(item => !item.JoinEntities.Any(entry => entry.BookId == targetBook.BookId))
+        .ToList();
+    
+      return View(targetBook);
+    }
+
+    [HttpPost]
+    public ActionResult ManageAuthor(List<int> authorList, int bookId)
+    {
+      Book targetBook = _db.Books.FirstOrDefault(item=>item.BookId == bookId);
+
+      targetBook.JoinEntities.Clear();
+      if(authorList.Count != 0)
+      {
+        foreach(int author in authorList)
+        {
+          _db.AuthorBooks.Add(new AuthorBook() {BookId = bookId, AuthorId = author });
+          _db.SaveChanges();
+        }
+      }
+      return Redirect($"/Books/Details/{bookId}");
     }
   }
 

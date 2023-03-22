@@ -3,11 +3,30 @@
 }
 
 @model LibraryApp.Models.Author
+@using LibraryApp.Models
 
-@using (Html.BeginForm())
+<form method = "post">
+  <label for="name">Author:</label>
+  <input type = "text" id="name" name="name">
+  <br>
+  <table>
+  @foreach (Book item in ViewBag.Books)
+  {
+    <tr>
+      <td>@item.Title</td>
+      <td><input name="wutBooks" type="checkbox" value="@item.BookId"></td>
+    </tr>
+  }
+</form>
+<input type="submit" value="Save this author">
+
+@Html.ActionLink("Back to List", "Index")
+
+
+<!-- @using (Html.BeginForm())
 
 {
   <p>Author Name!</p>
   @Html.EditorFor(model=> model.Name)
   <button>Submit!</button>
-}
+} -->

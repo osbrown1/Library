@@ -5,7 +5,7 @@
 @using LibraryApp.Models
 @model LibraryApp.Models.Author
 
-<h2>Author</h2>
+<h2>Author:</h2>
 <br>
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
@@ -14,9 +14,15 @@
   <p>This author hasn't written any books yet</p>
 }
 else
-  @foreach(AuthorBook join in Model.JoinEntities)
 {
-  <h3>Books:@join.Book.Title</h3>
+  <h3>Books:</h3>
+  <ul>
+  @foreach(AuthorBook join in Model.JoinEntities)
+  {
+    <li>@join.Book.Title</li>
+  }
+  </ul>
 }
 
+<p>@Html.ActionLink("Edit this Author", "Edit")</p>
 <p>@Html.ActionLink("Back to list", "Index")</p>

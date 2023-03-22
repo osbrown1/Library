@@ -17,7 +17,7 @@ a regular user would only have access to a portion of what the librarian has acc
 ToDo: 
 
 -Fill out Authors Controller and Author View, as well for Patrons Controller and Patron views. 
--Determine how we want login functionality, eg login for patrons & librarians respectfully? 
+-Determine how we want login functionality, eggs login for patrons & librarians respectfully? 
 -Patron should be restricted from full content of webpage.
 
 
