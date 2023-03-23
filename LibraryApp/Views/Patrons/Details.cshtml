@@ -1,0 +1,43 @@
+@{
+  Layout = "_Layout";
+}
+
+@model LibraryApp.Models.Patron;
+@using LibraryApp.Models;
+@using System.Collections.Generic;
+
+<h2>Patrons:</h2>
+<br>
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<br>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>We don't have any copies of this book, ass hat</p>
+}
+else
+{
+  <h4>Number of copies on hand: @Model.JoinEntities.Count</h4>
+  
+}
+
+@if(Model.JoinEntities.Count == 0)
+{
+  <p>No copies have been assigned to this book</p>
+}
+else
+{
+  <h3>Copy</h3>
+  @foreach(PatronCopy join in Model.JoinEntities)
+  {
+    <p>Copy: @join.Copy.CopyId</p>
+    {
+      @Html.Hidden("joinId", @join.PatronCopyId)
+      <input type="submit" value="Delete"/>
+    }
+    
+  }
+}
+@* @Html.ActionLink("Edit Copies For This Book", "", new { id = Model.PatronId }) *@
+<p>@Html.ActionLink("Edit Patron", "Edit", new { id = Model.PatronId })</p>
+<p>@Html.ActionLink("Delete Patron", "Delete", new { id = Model.PatronId })</p>

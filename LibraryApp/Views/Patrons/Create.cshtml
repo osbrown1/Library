@@ -1,0 +1,23 @@
+@{
+    Layout = "_Layout";
+}
+
+@model LibraryApp.Models.Patron
+@using LibraryApp.Models
+
+<form method="post">
+    <label for="name">Patron:</label>
+    <input type="text" id="name" name="name">
+    <table>
+        @foreach (Copy item in ViewBag.Copies)
+        {
+            <tr>
+                <td>@item.BookId</td>
+                <td><input name="wutCopies" type="checkbox" value="@item.BookId"></td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Save this Patron">
+</form>
+
+@Html.ActionLink("Back to List", "Index")

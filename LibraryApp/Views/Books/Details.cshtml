@@ -21,7 +21,7 @@ else
   
 }
 
-@if(Model.JoinEntities.Count == 0)
+<!-- @if(Model.JoinEntities.Count == 0)
 {
   <p>No authors have been assigned to this book</p>
 }
@@ -37,7 +37,7 @@ else
     }
     
   }
-}
+} -->
 @Html.ActionLink("Edit Authors For This Book", "ManageAuthor", new { id = Model.BookId })
 <p>@Html.ActionLink("Edit Book", "Edit", new { id = Model.BookId })</p>
 <p>@Html.ActionLink("Delete Book", "Delete", new { id = Model.BookId })</p>
